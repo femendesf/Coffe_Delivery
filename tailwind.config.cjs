@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    '.src/**/*.{tsx,ts}',
+    './src/**/*.{tsx,ts}',
     './index.html'
   ],
   theme: {
@@ -26,7 +26,12 @@ module.exports = {
         'yellow-dark':   '#C47F17',
 
       },
+     
     },
+    fontFamily:{
+      'Roboto' : ['Roboto' , 'sans-serif'],
+      'Baloo' : ['"Baloo 2"' , 'cursive']
+    }
   },
   plugins: [],
 }

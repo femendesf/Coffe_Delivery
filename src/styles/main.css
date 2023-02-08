@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base{
+    
+    h1{
+        @apply font-Baloo
+    }
+
+    #sub_info p{
+        @apply h-8 flex items-center gap-4 mb-5 leading-3 whitespace-nowrap;
+
+    }
+
+    #sub_info span{
+        @apply text-background
+    }
+}
+
+html {
+    font-family: Roboto;
+}

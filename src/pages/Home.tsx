@@ -1,53 +1,41 @@
-import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
+import { Coffee, Package, ShoppingCart, ShoppingCartSimple, Timer } from 'phosphor-react'
 
 export function Home(){
     return(
         <div>
-            <div id='titulo' className='flex mt-24'>
 
-                    <div>
+            <div className='mt-16 flex gap-14 justify-center' id='Parte do titulo'>
 
-                        <div className='w-[588px]' id='info1'>
-                            <h1 className='text-5xl'>
-                                Encontre o café perfeito para qualquer hora do dia
-                            </h1>
-                            <p className='text-xl text-base-subtitle mt-4'>
-                                Com o Coffe Delivery você recebe seu café onde estiver, a qualquer hora
-                            </p>
-                        </div>
-                       
+                <div className=''>
+                    <h1 className='text-5xl w-[588px] mb-4'>
+                        Encontre o café perfeito para qualquer hora do dia
+                    </h1>
+                    <p className='text-xl leading-5 w-[588px]'>
+                        Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora
+                    </p>
+                    
+                    <div className='grid grid-cols-2 mt-[66px] w-[567px]' id='info_span'>
+                        <p > 
+                            <span className='bg-yellow-dark'>
+                                <ShoppingCartSimple size={16} className='ml-2 mt-2'/>
+                            </span>  
+                            Compra simples e segura
+                        </p>
 
-                        <div className='grid grid-cols-2 mt-16 w-[567px] items-center' id='sub_info'>
-                        
-                            <p> 
-                                <span className='bg-yellow-dark rounded-full w-8 h-8'>
-                                    <ShoppingCart size={20} weight='duotone' className='mt-[6px] ml-[5.5px]'/>
-                                </span> 
-                                Compra simples e segura
-                            </p>
+                        <p> 
+                            <span className='bg-base-text'>
+                                <Package className='ml-2 mt-2'/> 
+                            </span> Embalagem mantém o café intacto
+                        </p>
 
-                            <p className=''> 
-                                <span className='bg-base-text rounded-full w-8 h-8'> <Package className='mt-[6px] ml-[5.5px]' size={20}/> </span>
-                                Embalagem mantém o café intacto
-                            </p>
-
-                            <p>
-                                <span > <Timer size={20} className='bg-yellow rounded-full '/> </span>
-                                Entrega rápida e rastreada
-                            </p>
-
-                            <p>
-                                <span className='bg-purple rounded-full w-8 h-8'> <Coffee size={20} className='mt-[6px] ml-[5.5px]'/> </span>
-                                O café chega fresquinho até você
-                            </p>
-            
-                        </div>
-                   
+                        <p> <span><Timer/></span>  Entrega rápida e rastreada</p>
+                        <p> <span><Coffee/></span>  O café chega fresquinho até você</p>
                     </div>
-                
-               
-                    <img src="src\assets\cup._home.svg" alt="" className=''/>
-               
+                 
+                </div>
+
+                <img src="src\assets\cup._home.svg" alt="" className=''/>
+
             </div>
 
             <div className='mt-8'>

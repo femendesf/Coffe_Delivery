@@ -13,8 +13,12 @@
 
     }
 
-    #sub_info span{
-        @apply text-background
+    #info_span p{
+       @apply flex items-center gap-3
+    }
+
+    #info_span span{
+        @apply w-8 h-8 rounded-full
     }
 }
 

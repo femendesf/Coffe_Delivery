@@ -13,15 +13,16 @@
 
     }
 
-    #info_span p{
-       @apply flex items-center gap-3
+    #info_span div{
+       @apply flex items-center gap-3 
     }
 
-    #info_span span{
-        @apply w-8 h-8 rounded-full
+    #teste span{
+        @apply flex justify-center items-center rounded-full w-8 h-8 text-background
     }
 }
 
 html {
     font-family: Roboto;
 }
+

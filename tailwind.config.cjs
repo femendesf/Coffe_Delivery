@@ -26,6 +26,9 @@ module.exports = {
         'yellow-dark':   '#C47F17',
 
       },
+      gridTemplateColumns:{
+        '10' : 'repeat(2, min'
+      }
      
     },
     fontFamily:{

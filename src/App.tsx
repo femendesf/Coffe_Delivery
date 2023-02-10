@@ -6,7 +6,7 @@ import { Router } from './Router'
 export function App() {
 
   return (
-      <div className='flex  mx-28 items-center justify-center'>
+      <div className='flex mx-28 items-center justify-center'>
           <BrowserRouter>
             <Router/>
           </BrowserRouter>

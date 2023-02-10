@@ -8,21 +8,25 @@
         @apply font-Baloo
     }
 
-    #sub_info p{
-        @apply h-8 flex items-center gap-4 mb-5 leading-3 whitespace-nowrap;
-
-    }
-
-    #info_span div{
-       @apply flex items-center gap-3 
-    }
-
-    #teste span{
+    #span_info span{
         @apply flex justify-center items-center rounded-full w-8 h-8 text-background
     }
+
+   #span_info p{
+        @apply flex gap-3 items-center 
+   }
 }
 
 html {
     font-family: Roboto;
 }
 
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    
+}
+input[type=number] { 
+   -moz-appearance: textfield;
+   appearance: textfield;
+
+}

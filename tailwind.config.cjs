@@ -28,13 +28,17 @@ module.exports = {
       },
       gridTemplateColumns:{
         '10' : 'repeat(2, min'
+      },
+      borderRadius:{
+        'card' : '6px 32px 6px 32px'
       }
      
     },
     fontFamily:{
       'Roboto' : ['Roboto' , 'sans-serif'],
       'Baloo' : ['"Baloo 2"' , 'cursive']
-    }
+    },
+   
   },
   plugins: [],
 }

@@ -2,16 +2,18 @@ import './styles/main.css'
 import './App.tsx'
 import { BrowserRouter } from 'react-router-dom'
 import { Router } from './Router'
+import { CardsContextProvider } from './context/CardsContext'
 
 export function App() {
 
   return (
-      <div className='flex mx-28 items-center justify-center'>
-          <BrowserRouter>
+      <>
+        <BrowserRouter>
+          <CardsContextProvider>
             <Router/>
-          </BrowserRouter>
-          
-      </div>
+          </CardsContextProvider>
+        </BrowserRouter>
+      </>
      
   )
 }

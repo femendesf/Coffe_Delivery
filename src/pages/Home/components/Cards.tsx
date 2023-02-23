@@ -1,6 +1,9 @@
 import { ShoppingCart } from "phosphor-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CardsContext } from "../../../context/CardsContext";
 import { InputNumber } from "./InputNumber"
+
+import { v4 as uuidv4 } from 'uuid';
 
 interface CardProsp{
     src : string,
@@ -9,25 +12,35 @@ interface CardProsp{
     info_increment_2?: string,
     title_coffee: string,
     text_coffee: string,
-
 }
+
+
 export function Cards({src, info, info_increment, title_coffee, text_coffee, info_increment_2} : CardProsp){
+    
+    const idCard = uuidv4()
 
-    const [quantity, setQuantity] = useState(1);
+    const {setTot} = useContext(CardsContext)
 
-    function handleIncrease() {
-        setQuantity(state => state + 1);
+    const [newQuantity, setNewQuantity] = useState(1)
+
+    function handleIncrease(){
+        setNewQuantity(state => state + 1)
+    }
+
+    function handleDecrease(){
+        setNewQuantity(state => state - 1)
+    }
+
+    function addToQuantity(){
+        setTot(newQuantity)
+       
     }
     
-    function handleDecrease() {
-        setQuantity(state => state - 1);
-        
-    }
-
     return(
         <div 
                 className='flex flex-col justify-center items-center w-64 h-[310px] bg-base-card mb-9 rounded-card' 
                 id='cards'
+                key={idCard}
             >
             
                 <img 
@@ -81,14 +94,17 @@ export function Cards({src, info, info_increment, title_coffee, text_coffee, inf
                     <h1 className="text-2xl mr-[23px]">
                         9,90
                     </h1>
-
+                    
                     <InputNumber
                         onIncrease={handleIncrease}
                         onDecrease={handleDecrease}
-                        quantity={quantity}
+                        quantity={newQuantity}
+                        id={idCard}
                     />
 
-                    <button className="bg-purple w-9 h-9 rounded-md flex items-center justify-center"> 
+                    <button 
+                        onClick={addToQuantity}
+                        className="bg-purple w-9 h-9 rounded-md flex items-center justify-center"> 
                         <ShoppingCart size={22} color='#F3F2F2' weight="duotone"/> 
                     </button>
                     

@@ -22,9 +22,23 @@ export function InputNumber({quantity, onIncrease, onDecrease, id} : InputNumber
         
         <div className="w-[72px] h-[38px] bg-base-button rounded-md mr-2 flex justify-center items-center ">
             
-            <button onClick={onDecrease} disabled={numberIsNegative}><Minus className="text-purple" weight="bold" /></button>
-            <input type="number" name="" id="" className="w-6 bg-base-button  text-center" value={quantity}/>
-            <button onClick={onIncrease}  ><Plus className="text-purple" weight="bold" /></button>
+            <button 
+                id="minus" 
+                onClick={onDecrease} 
+                disabled={numberIsNegative} 
+                className='text-purple disabled:text-purple hover:text-purple-dark'
+            >
+                <Minus weight="bold" />
+            </button>
+
+            <input type="number"className="w-6 bg-base-button  text-center" value={quantity}/>
+
+            <button 
+                onClick={onIncrease}  
+                className="text-purple hover:text-purple-dark"
+            >
+                <Plus  weight="bold" />
+            </button>
 
         </div>
     )

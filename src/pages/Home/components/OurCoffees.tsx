@@ -1,14 +1,9 @@
-import { ShoppingCart } from "phosphor-react";
-import { useState } from "react";
 import { Cards } from "./Cards";
-import { InputNumber } from "./InputNumber";
-
-import { v4 as uuidv4 } from 'uuid';
 
 export function OurCoffees(){
 
     return (
-        <div className='mt-[132px] flex flex-col max-w-[1440px]'>
+        <div className='mt-[132px] flex flex-col'>
             <h1 className='text-[32px] mb-14'>
                 Nossos cafés
             </h1>

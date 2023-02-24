@@ -62,7 +62,6 @@ export function Cards({src, info, info_increment, title_coffee, text_coffee, inf
                         >
                             {info_increment.toUpperCase()}
                         </span> : ''
-                    
                     } 
 
                     {info_increment_2 ? 
@@ -71,11 +70,9 @@ export function Cards({src, info, info_increment, title_coffee, text_coffee, inf
                         >
                             {info_increment_2.toUpperCase()}
                         </span> : ''
-                    
                     } 
                 </div>
                 
-
                 <h1 
                     className="text-xl mt-4 mb-2"
                 >
@@ -104,8 +101,8 @@ export function Cards({src, info, info_increment, title_coffee, text_coffee, inf
 
                     <button 
                         onClick={addToQuantity}
-                        className="bg-purple w-9 h-9 rounded-md flex items-center justify-center"> 
-                        <ShoppingCart size={22} color='#F3F2F2' weight="duotone"/> 
+                        className="bg-purple-dark hover:bg-purple w-9 h-9 rounded-md flex items-center justify-center"> 
+                        <ShoppingCart size={22} color='#F3F2F2' weight="fill"/> 
                     </button>
                     
                 </div>

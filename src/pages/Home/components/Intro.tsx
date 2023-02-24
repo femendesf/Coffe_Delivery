@@ -3,7 +3,7 @@ import { Coffee, Package, ShoppingCartSimple, Timer } from 'phosphor-react'
 export function Intro(){
     return (
 
-        <div className='mt-[200px] gap-[50px] flex justify-center items-center' id='Parte do titulo'>
+        <div className='gap-[50px] flex items-center mt-36' id='Parte do titulo'>
             <div>
                 <h1 className='text-5xl mb-4 max-w-[588px]'>
                     Encontre o café perfeito para qualquer hora do dia

@@ -1,32 +1,66 @@
 import { createContext, ReactNode, useState } from "react";
 
 interface CardsContextType{
+    listCoffees:CardInfosProps[]
     quantity: number,
     setTot: (state: number) => void,
+    setInfo: (titleCoffee : string, imgCoffee: string, id: string, newQuantity: number) => void,
 }
 
 interface CardsContextProps{
     children: ReactNode
 }
 
+interface CardInfosProps{
+    idCoffee: string,
+    titleCoffee: string,
+    imgCoffee: string,
+    newQuantity: number
+}
+    
+
 export const CardsContext = createContext({} as CardsContextType)
 
 export function CardsContextProvider({ children} : CardsContextProps) {
 
     const [quantity, setQuantity] = useState(0);
-
+    const [listCoffees, setListCoffees] = useState<CardInfosProps[]>([])
 
     function setTot(state: number){
         setQuantity(tot => state + tot)
-        console.log(quantity)
     }
 
-    console.log(quantity)
+    function setInfo(id: string, imgCoffee: string, titleCoffee: string, newQuantity: number ){
+        
+        const exists = listCoffees.some((coffee) => coffee.idCoffee === id);
+
+        // Se não existe, adiciona um novo objeto à lista
+        if (!exists) {
+          setListCoffees((state) => [
+            ...state,
+            {
+              idCoffee: id,
+              imgCoffee: imgCoffee,
+              titleCoffee: titleCoffee,
+              newQuantity: newQuantity
+            },
+          ]);
+        }
+    }
+
+    
+
+    console.log(listCoffees)
+
     return(
         <CardsContext.Provider
         value={{
             quantity,
-            setTot
+            setTot,
+            setInfo,
+            listCoffees,
+          
+          
         }}
         >
             {children}

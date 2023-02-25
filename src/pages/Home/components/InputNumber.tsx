@@ -5,10 +5,10 @@ interface InputNumberProps{
     quantity: number;
     onIncrease: () => void;
     onDecrease: () => void;
-    id: string
+   
     
 }
-export function InputNumber({quantity, onIncrease, onDecrease, id} : InputNumberProps){
+export function InputNumber({quantity, onIncrease, onDecrease, } : InputNumberProps){
     
     let numberIsNegative = false
 

@@ -11,7 +11,7 @@ export function Header(){
     return(
         <div className="flex items-center justify-center mt-12">
 
-          <nav className='flex items-center justify-between bg-background fixed w-full max-w-[1200px] border-b-2 rounded-xl px-10'>
+          <nav className='flex items-center justify-between bg-background fixed w-full max-w-[1250px] border-b-2 rounded-xl px-10'>
 
             <NavLink
               to="/"

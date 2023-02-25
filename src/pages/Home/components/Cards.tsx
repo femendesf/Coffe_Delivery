@@ -3,9 +3,8 @@ import { useContext, useState } from "react";
 import { CardsContext } from "../../../context/CardsContext";
 import { InputNumber } from "./InputNumber"
 
-import { v4 as uuidv4 } from 'uuid';
-
 interface CardProsp{
+    idCard: string,
     src : string,
     info: string,
     info_increment?: string,
@@ -15,13 +14,13 @@ interface CardProsp{
 }
 
 
-export function Cards({src, info, info_increment, title_coffee, text_coffee, info_increment_2} : CardProsp){
+export function Cards({src, info, info_increment, title_coffee, text_coffee, info_increment_2, idCard} : CardProsp){
     
-    const idCard = uuidv4()
 
-    const {setTot} = useContext(CardsContext)
+    const {setTot, setInfo} = useContext(CardsContext)
 
     const [newQuantity, setNewQuantity] = useState(1)
+    const [listQuantity, setListQuantity] = useState(1)
 
     function handleIncrease(){
         setNewQuantity(state => state + 1)
@@ -32,13 +31,20 @@ export function Cards({src, info, info_increment, title_coffee, text_coffee, inf
     }
 
     function addToQuantity(){
+        
+        setInfo(idCard, src, title_coffee, newQuantity) 
+        
+
         setTot(newQuantity)
-       
+        setListQuantity(state => newQuantity + state)
+        console.log(listQuantity)
     }
+
+   
     
     return(
         <div 
-                className='flex flex-col justify-center items-center w-64 h-[310px] bg-base-card mb-9 rounded-card' 
+                className='flex flex-col justify-center items-center w-64 h-[310px] bg-base-card mb-9 rounded-card ' 
                 id='cards'
                 key={idCard}
             >
@@ -46,7 +52,7 @@ export function Cards({src, info, info_increment, title_coffee, text_coffee, inf
                 <img 
                     src={src}
                     alt=""
-                    className="mt-[-50px]"
+                    className="mt-[-50px] rounded-full shadow-2xl"
                 />
                 
                 <div className="flex gap-1">
@@ -96,7 +102,6 @@ export function Cards({src, info, info_increment, title_coffee, text_coffee, inf
                         onIncrease={handleIncrease}
                         onDecrease={handleDecrease}
                         quantity={newQuantity}
-                        id={idCard}
                     />
 
                     <button 

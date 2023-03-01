@@ -31,6 +31,7 @@ export function CardsContextProvider({ children} : CardsContextProps) {
         
     }
 
+    
     function setInfo(id: string, imgCoffee: string, titleCoffee: string, newQuantity: number ){
         
         const exists = listCoffees.some((coffee) => coffee.idCoffee === id);

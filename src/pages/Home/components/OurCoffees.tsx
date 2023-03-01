@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 export function OurCoffees(){
 
+    //useEffect(() => {}, [])
    
     return (
         <div className='mt-[132px] flex flex-col'>

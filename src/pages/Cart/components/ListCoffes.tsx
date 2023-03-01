@@ -5,10 +5,11 @@ import { InputNumber } from "../../Home/components/InputNumber";
 
 interface ListCoffesProps{
     img: string,
-    title: string
+    title: string,
+    value: number
 }
 
-export function ListCoffees({img, title} : ListCoffesProps){
+export function ListCoffees({img, title, value} : ListCoffesProps){
 
     const [quantity, setQuantity] = useState(1)
 
@@ -20,6 +21,8 @@ export function ListCoffees({img, title} : ListCoffesProps){
         setQuantity(state => state - 1)
     }
 
+    const tot = value * 9.90
+    
     return(
         <div className="flex mb-6 pb-6 border-b">
                 <div className="flex gap-5 mb-3">
@@ -41,7 +44,7 @@ export function ListCoffees({img, title} : ListCoffesProps){
                         </div>
 
                 </div>
-                <span className="ml-auto">R$ 9,90</span>
+                <span className="ml-auto text-base-text font-bold">{tot.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
             </div>
     )
 }

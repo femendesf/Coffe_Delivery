@@ -1,5 +1,5 @@
 import { ShoppingCart } from "phosphor-react";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CardsContext } from "../../../context/CardsContext";
 import { InputNumber } from "./InputNumber"
 
@@ -20,28 +20,25 @@ export function Cards({src, info, info_increment, title_coffee, text_coffee, inf
     const {setTot, setInfo} = useContext(CardsContext)
 
     const [newQuantity, setNewQuantity] = useState(1)
-    const [listQuantity, setListQuantity] = useState(1)
+    
 
     function handleIncrease(){
         setNewQuantity(state => state + 1)
+       
     }
 
     function handleDecrease(){
         setNewQuantity(state => state - 1)
+        
     }
 
+  
     function addToQuantity(){
-        
-        setInfo(idCard, src, title_coffee, newQuantity) 
-        
-
         setTot(newQuantity)
-        setListQuantity(state => newQuantity + state)
-        console.log(listQuantity)
+        setInfo(idCard, src, title_coffee, newQuantity) 
+       
     }
 
-   
-    
     return(
         <div 
                 className='flex flex-col justify-center items-center w-64 h-[310px] bg-base-card mb-9 rounded-card ' 

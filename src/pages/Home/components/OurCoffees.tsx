@@ -1,14 +1,16 @@
 import { Cards } from "./Cards";
 import { v4 as uuidv4 } from 'uuid';
+import { useEffect } from "react";
 
 export function OurCoffees(){
 
+   
     return (
         <div className='mt-[132px] flex flex-col'>
             <h1 className='text-[32px] mb-14'>
                 Nossos cafés
             </h1>
-
+            
             <div className="grid grid-cols-4 gap-8">
                 <Cards
                     src="src\assets\coffes\expresso_tradicional.svg"

@@ -6,8 +6,9 @@ import { NavLink } from "react-router-dom";
 
 export function Header(){
 
-  const {quantity} = useContext(CardsContext)
+  const {quantity, listCoffees} = useContext(CardsContext)
 
+  let listFull = false
     return(
         <div className="flex items-center justify-center mt-12">
 
@@ -29,7 +30,8 @@ export function Header(){
               </div>
 
               <NavLink to='/cart'>
-                <button className='bg-yellow-light text-yellow-dark flex items-center w-9 h-9 rounded  p-2 '> 
+                
+                <button disabled={true} className='bg-yellow-light text-yellow-dark flex items-center w-9 h-9 rounded p-2 hover:bg-yellow-hover'> 
                   <ShoppingCart size={22} weight='fill'/> 
                 </button>
               </NavLink>

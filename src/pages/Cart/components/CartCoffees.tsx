@@ -7,13 +7,9 @@ import { ListCoffees } from "./ListCoffes"
 
 export function CartCoffees(){
 
-    const {listCoffees} = useContext(CardsContext)
+    const {listCoffees, quantity} = useContext(CardsContext)
 
-    console.log(listCoffees)
-
-
-    
-
+    const totCart = quantity * 9.90
 
     return(
         
@@ -33,7 +29,7 @@ export function CartCoffees(){
 
             <div className="flex justify-between mt-6 text-sm">
                 <h3>Total de itens</h3>
-                <span>R$29,70</span>
+                <span>{totCart.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
             </div>
 
             <div className="flex justify-between text-sm">
@@ -43,7 +39,7 @@ export function CartCoffees(){
 
             <div className="flex justify-between text-xl font-bold">
                 <h2>Total</h2>
-                <span>R$ 33,20</span>
+                <span>{(totCart + 3.50).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
             </div>
 
             <button className="mt-5 bg-yellow text-white font-bold text-sm py-3 rounded-md">CONFIRMAR PEDIDO</button>

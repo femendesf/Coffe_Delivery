@@ -1,9 +1,9 @@
 import { ShoppingCart } from "phosphor-react";
 import { useContext, useEffect, useState } from "react";
-import { CardsContext } from "../../../context/CardsContext";
+import { CardInfosProps, CardsContext } from "../../../context/CardsContext";
 import { InputNumber } from "./InputNumber"
 
-interface CardProsp{
+interface CardProps{
     idCard: string,
     src : string,
     info: string,
@@ -14,29 +14,37 @@ interface CardProsp{
 }
 
 
-export function Cards({src, info, info_increment, title_coffee, text_coffee, info_increment_2, idCard} : CardProsp){
+export function Cards({src, info, info_increment, title_coffee, text_coffee, info_increment_2, idCard} : CardProps){
     
     
-    const {setTot, setInfo} = useContext(CardsContext)
+    const {setTot, listCoffees, updateList, createList} = useContext(CardsContext)
 
     const [newQuantity, setNewQuantity] = useState(1)
-    
 
     function handleIncrease(){
         setNewQuantity(state => state + 1)
-       
     }
 
     function handleDecrease(){
         setNewQuantity(state => state - 1)
-        
     }
 
-  
     function addToQuantity(){
+
+
         setTot(newQuantity)
-        setInfo(idCard, src, title_coffee, newQuantity) 
-       
+
+        const exists = listCoffees.some((coffee) => coffee.idCoffee === idCard);
+        console.log(exists)
+
+        if (!exists) {
+           
+            createList(idCard, src, title_coffee, newQuantity);
+
+        }else{
+
+            updateList(idCard, newQuantity)
+        }
     }
 
     return(

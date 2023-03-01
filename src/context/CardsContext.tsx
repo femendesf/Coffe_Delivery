@@ -1,22 +1,28 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 
+
 interface CardsContextType{
     listCoffees:CardInfosProps[]
     quantity: number,
     setTot: (state: number) => void,
-    setInfo: (titleCoffee : string, imgCoffee: string, id: string, newQuantity: number) => void,
+    createList: (titleCoffee : string, imgCoffee: string, id: string, newQuantity: number) => void,
+    updateList: (id: string, newQuantity: number) => void
 }
 
 interface CardsContextProps{
     children: ReactNode
 }
 
-interface CardInfosProps{
+export interface CardInfosProps{
     idCoffee: string,
     titleCoffee: string,
     imgCoffee: string,
-    newQuantity: number
+    newQuantity: number,
+    info?: string,
+    info_increment?: string,
+    info_increment_2?: string,
 }
+
 
 export const CardsContext = createContext({} as CardsContextType)
 
@@ -24,51 +30,40 @@ export function CardsContextProvider({ children} : CardsContextProps) {
 
     const [quantity, setQuantity] = useState(0);
     const [listCoffees, setListCoffees] = useState<CardInfosProps[]>([])
-    const [sumTotCard, setSumTotCard] = useState(0)
-
+    
+    
     function setTot(state: number){
         setQuantity(tot => state + tot)
-        
     }
 
-    
-    function setInfo(id: string, imgCoffee: string, titleCoffee: string, newQuantity: number ){
-        
-        const exists = listCoffees.some((coffee) => coffee.idCoffee === id);
+    function createList(idCoffee: string, imgCoffee: string, titleCoffee: string, newQuantity: number){
+       
+        setListCoffees((state) => [
+            ...state,
+            {
+            idCoffee: idCoffee,
+            imgCoffee: imgCoffee,
+            titleCoffee: titleCoffee,
+            newQuantity: newQuantity
+            },
+        ]);
 
-        // Se não existe, adiciona um novo objeto à lista
-        if (!exists) {
-            setSumTotCard(newQuantity)
+    }
 
-            setListCoffees((state) => [
-                ...state,
-                {
-                idCoffee: id,
-                imgCoffee: imgCoffee,
-                titleCoffee: titleCoffee,
-                newQuantity: newQuantity
-                },
-            ]);
+    function updateList(id : string, quantity: number){
 
-        }else{
-            setSumTotCard(sumTotCard + newQuantity)
-        
-            const newList = listCoffees.map((item) => {
-                if(item.idCoffee == id){
-                    return{
-                        ...item, newQuantity: sumTotCard
-                    }
+        const newList = listCoffees.map((item) => {
+            if(id === item.idCoffee){
+                const tot = item.newQuantity + quantity
+                return{
+                    ...item, newQuantity: tot
                 }
-
-                return item
-            })
-            
-            setListCoffees(newList)
-        }
-
+            }
+            return item
+        })
+        setListCoffees(newList)
     }
-
-    console.log(sumTotCard)
+   
     console.log(listCoffees)
 
     return( 
@@ -76,8 +71,9 @@ export function CardsContextProvider({ children} : CardsContextProps) {
         value={{
             quantity,
             setTot,
-            setInfo,
             listCoffees,
+            createList,
+            updateList
         }}
         >
             {children}

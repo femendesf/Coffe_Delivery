@@ -1,5 +1,5 @@
 import { Trash } from "phosphor-react";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CardsContext } from "../../../context/CardsContext";
 
 import { InputNumber } from "../../Home/components/InputNumber";
@@ -13,7 +13,7 @@ interface ListCoffesProps{
 export function ListCoffees({img, title, value} : ListCoffesProps){
 
     const [quantity, setQuantity] = useState(1)
-    const {listCoffees} = useContext(CardsContext)
+    const {listCoffees } = useContext(CardsContext)
 
     function handleIncrease(){
         setQuantity(state => state + 1)
@@ -23,8 +23,9 @@ export function ListCoffees({img, title, value} : ListCoffesProps){
         setQuantity(state => state - 1)
     }
 
+    
     const tot = value * 9.90
-    //{listCoffees.map(({imgCoffee}) => {})}
+
     return(
         <div className="flex mb-6 pb-6 border-b">
                 
@@ -33,6 +34,7 @@ export function ListCoffees({img, title, value} : ListCoffesProps){
                         <div>
                             <h2 className="mb-2">{title}</h2>
                             <div className="flex grid grid-cols-2">
+
                                 <InputNumber
                                     onDecrease={handleDecrease}
                                     onIncrease={handleIncrease}

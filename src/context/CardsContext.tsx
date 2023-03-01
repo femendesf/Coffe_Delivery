@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useEffect, useReducer, useState } from "react";
 
 
 interface CardsContextType{
@@ -29,16 +29,51 @@ export const CardsContext = createContext({} as CardsContextType)
 export function CardsContextProvider({ children} : CardsContextProps) {
 
     const [quantity, setQuantity] = useState(0);
-    const [listCoffees, setListCoffees] = useState<CardInfosProps[]>([])
+
+    const [listCoffees, dispatch] = useReducer((state: CardInfosProps[], action: any) => {
+
+        if(action.type === 'CREATE_LIST_COFFEES'){
+            return [...state, action.payload.data]
+        }
+
+        if(action.type === 'UPDATE_LIST_COFFEES_NEW_QUANTITY'){
+            
+            const newList = state.map((item) => {
+                if(action.payload.id === item.idCoffee){
+                    const tot = item.newQuantity + action.payload.quantity
+                    return{
+                        ...item, newQuantity: tot
+                    }
+                }
+                return item
+            })
+            
+            return(newList)
+        }
+
+        return state
+    } , [])
     
-    
+     
     function setTot(state: number){
         setQuantity(tot => state + tot)
     }
 
     function createList(idCoffee: string, imgCoffee: string, titleCoffee: string, newQuantity: number){
-       
-        setListCoffees((state) => [
+
+        dispatch({
+            type: 'CREATE_LIST_COFFEES',
+            payload:{
+                data: {
+                    idCoffee: idCoffee,
+                    imgCoffee: imgCoffee,
+                    titleCoffee: titleCoffee,
+                    newQuantity: newQuantity
+                    },
+            }
+        })
+
+        /*setListCoffees((state) => [
             ...state,
             {
             idCoffee: idCoffee,
@@ -46,13 +81,22 @@ export function CardsContextProvider({ children} : CardsContextProps) {
             titleCoffee: titleCoffee,
             newQuantity: newQuantity
             },
-        ]);
+        ]);*/
 
     }
 
     function updateList(id : string, quantity: number){
 
-        const newList = listCoffees.map((item) => {
+        dispatch({
+            type: 'UPDATE_LIST_COFFEES_NEW_QUANTITY',
+            payload:{
+                quantity: quantity,
+                id: id
+            }
+        })
+
+
+        /*const newList = listCoffees.map((item) => {
             if(id === item.idCoffee){
                 const tot = item.newQuantity + quantity
                 return{
@@ -60,8 +104,8 @@ export function CardsContextProvider({ children} : CardsContextProps) {
                 }
             }
             return item
-        })
-        setListCoffees(newList)
+        })*/
+        //setListCoffees(newList)
     }
    
     console.log(listCoffees)

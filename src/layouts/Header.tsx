@@ -28,10 +28,10 @@ export function Header(){
                   <MapPin size={22} weight="fill"/>
                   <h2 >Curitiba, PR</h2>
               </div>
-
-              <NavLink to='/cart'>
+            
+              <NavLink  to='/cart'>
                 
-                <button disabled={true} className='bg-yellow-light text-yellow-dark flex items-center w-9 h-9 rounded p-2 hover:bg-yellow-hover'> 
+                <button className='bg-yellow-light text-yellow-dark flex items-center w-9 h-9 rounded p-2 hover:bg-yellow-hover'> 
                   <ShoppingCart size={22} weight='fill'/> 
                 </button>
               </NavLink>

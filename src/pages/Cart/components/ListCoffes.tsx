@@ -13,21 +13,23 @@ interface ListCoffesProps{
 
 export function ListCoffees({img, title, value, id} : ListCoffesProps){
 
-    const [quantity, setQuantity] = useState(1)
-    const {listCoffees, updateValueToUp, updateValueToDown } = useContext(CardsContext)
+    const { updateValueCart, listCoffees, deleteCoffee } = useContext(CardsContext)
 
     function handleIncrease(){
-        updateValueToUp(id)
+       
+        const newValue = value + 1
+        updateValueCart(id, newValue)
     }
 
     function handleDecrease(){
-        updateValueToDown(id)
-        
+    
+        const newValue = value - 1
+        updateValueCart(id, newValue)
     }
 
-    useEffect(() => {
-       
-    } , [])
+    function sendId(){
+        deleteCoffee(id)
+    }
 
     const tot = value * 9.90
 
@@ -46,7 +48,9 @@ export function ListCoffees({img, title, value, id} : ListCoffesProps){
                                     quantity={value}
                                 />
                                 <button 
-                                    className="text-xs flex items-center justify-center gap-1 bg-base-button rounded-md p-2">
+                                    className="text-xs flex items-center justify-center gap-1 bg-base-button rounded-md p-2"
+                                    onClick={sendId}
+                                    >
                                     <Trash size={16} className="text-purple"/> 
                                     REMOVER
                                 </button>

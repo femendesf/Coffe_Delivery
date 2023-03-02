@@ -17,7 +17,7 @@ interface CardProps{
 export function Cards({src, info, info_increment, title_coffee, text_coffee, info_increment_2, idCard} : CardProps){
     
     
-    const {setTot, listCoffees, updateList, createList} = useContext(CardsContext)
+    const {listCoffees, updateList, createList} = useContext(CardsContext)
 
     const [newQuantity, setNewQuantity] = useState(1)
 
@@ -32,7 +32,7 @@ export function Cards({src, info, info_increment, title_coffee, text_coffee, inf
     function addToQuantity(){
 
 
-        setTot(newQuantity)
+        
 
         const exists = listCoffees.some((coffee) => coffee.idCoffee === idCard);
         console.log(exists)

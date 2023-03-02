@@ -4,11 +4,12 @@ import { createContext, ReactNode, useEffect, useReducer, useState } from "react
 interface CardsContextType{
     listCoffees:CardInfosProps[]
     quantity: number,
-    setTot: (state: number) => void,
+   
     createList: (titleCoffee : string, imgCoffee: string, id: string, newQuantity: number) => void,
     updateList: (id: string, newQuantity: number) => void,
-    updateValueToUp: (id : string) => void,
-    updateValueToDown: (id : string) => void,
+    updateValueCart: (id : string, value: number) => void,
+    deleteCoffee: (id: string) => void
+   
 }
 
 interface CardsContextProps{
@@ -32,11 +33,14 @@ export function CardsContextProvider({ children} : CardsContextProps) {
 
     const [quantity, setQuantity] = useState(0);
 
+    
     const [listCoffees, dispatch] = useReducer((state: CardInfosProps[], action: any) => {
 
         if(action.type === 'CREATE_LIST_COFFEES'){
             return [...state, action.payload.data]
         }
+
+
 
         if(action.type === 'UPDATE_LIST_COFFEES_NEW_QUANTITY'){
             
@@ -53,42 +57,49 @@ export function CardsContextProvider({ children} : CardsContextProps) {
             return newList
         }
 
-        /*if(action.type === 'UPDATE_VALUE_TO_UP'){
+        if(action.type === 'UPDATE_VALUE_COFFEE_CART'){
 
-           const newValueUp = state.map((item) => {
-            if(item.idCoffee === action.payload.id){
-
-                const up = action.payload.quantity + 1
-
-                return{
-                    ...item, newQuantity: up
+            const newList = state.map((item) => {
+                if(action.payload.id === item.idCoffee){
+                    return{
+                        ...item, newQuantity: action.payload.value
+                    }
                 }
-            }
-           })
+                return item
+            })
 
-           return newValueUp
+            return newList
+          
         }
 
-       /* if(action.type === 'UPDATE_VALUE_TO_DOWN'){
-           const newValueDown = state.map((item) => {
-            if(item.idCoffee === action.payload.id){
-                const down = item.newQuantity - 1
-                return{
-                    ...item, newQuantity:down
-                }
-            }
-           })
-           return newValueDown
-        }*/
+        if(action.type === 'DELETE_COFFEE'){
+
+            const newList = state.filter(item => {
+                return(
+                    item.idCoffee != action.payload.id
+                )
+            })
+
+            return newList
+        }
 
         return state
     } , [])
     
-     
-    function setTot(state: number){
-        setQuantity(tot => state + tot)
-    }
+    //ADICIONAR UMA LÓGICA PARA GUARDAR A SOMA TOTAL DA LISTA E NÃO DO CARD
 
+    useEffect(() => {
+
+        var tot = 0
+        listCoffees.map((item) => {
+            tot += item.newQuantity
+        })
+
+        setQuantity(tot)
+    
+    }, [listCoffees])
+
+    
     function createList(idCoffee: string, imgCoffee: string, titleCoffee: string, newQuantity: number){
 
         dispatch({
@@ -109,59 +120,50 @@ export function CardsContextProvider({ children} : CardsContextProps) {
         dispatch({
             type: 'UPDATE_LIST_COFFEES_NEW_QUANTITY',
             payload:{
-                quantity: quantity,
-                id: id
+                quantity,
+                id
             }
         })
-
-
-        dispatch({
-            type: 'UPDATE_VALUE_TO_UP',
-            payload:{
-                quantity: quantity,
-                id: id
-            }
-       })
-
     }
 
-    function updateValueToUp(id : string){
+    function updateValueCart(id : string, value: number){
         
         dispatch({
-            type: 'UPDATE_VALUE_TO_UP',
+            type: 'UPDATE_VALUE_COFFEE_CART',
             payload:{
-                id: id
+                id,
+                value
             }
        })
     }
 
-    function updateValueToDown(id : string){
+    function deleteCoffee(id: string){
 
         dispatch({
-            type: 'UPDATE_VALUE_TO_DOWN',
-            payload:{
-                id: id
+            type: 'DELETE_COFFEE',
+            payload: {
+                id
             }
-       })
+        })
     }
 
-
- 
     console.log(listCoffees)
+    console.log(quantity)
 
     return( 
         <CardsContext.Provider
         value={{
             quantity,
-            setTot,
+           
             listCoffees,
             createList,
             updateList,
-            updateValueToUp,
-            updateValueToDown
+            updateValueCart,
+            deleteCoffee
+        
         }}
         >
             {children}
-        </CardsContext.Provider>
+        </CardsContext.Provider >
     )
 }

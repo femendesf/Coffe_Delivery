@@ -15,8 +15,11 @@ export function CartCoffees(){
         
         <main className="flex flex-col mt-3 bg-base-card w-[448px] p-10 rounded-card gap-3
         ">
-           {listCoffees.map(({idCoffee, imgCoffee, titleCoffee, newQuantity}) => {
+           {
+          
+            listCoffees.map(({idCoffee, imgCoffee, titleCoffee, newQuantity}) => {
                 return(
+
                     <ListCoffees
                         img={imgCoffee}
                         title={titleCoffee}
@@ -25,6 +28,8 @@ export function CartCoffees(){
                     />
                 )
             })
+          
+           
            }
 
             <div className="flex justify-between mt-6 text-sm">

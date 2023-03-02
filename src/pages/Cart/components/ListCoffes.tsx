@@ -6,24 +6,29 @@ import { InputNumber } from "../../Home/components/InputNumber";
 
 interface ListCoffesProps{
     img: string,
+    id : string,
     title: string,
     value: number
 }
 
-export function ListCoffees({img, title, value} : ListCoffesProps){
+export function ListCoffees({img, title, value, id} : ListCoffesProps){
 
     const [quantity, setQuantity] = useState(1)
-    const {listCoffees } = useContext(CardsContext)
+    const {listCoffees, updateValueToUp, updateValueToDown } = useContext(CardsContext)
 
     function handleIncrease(){
-        setQuantity(state => state + 1)
+        updateValueToUp(id)
     }
 
     function handleDecrease(){
-        setQuantity(state => state - 1)
+        updateValueToDown(id)
+        
     }
 
-    
+    useEffect(() => {
+       
+    } , [])
+
     const tot = value * 9.90
 
     return(
@@ -34,7 +39,7 @@ export function ListCoffees({img, title, value} : ListCoffesProps){
                         <div>
                             <h2 className="mb-2">{title}</h2>
                             <div className="flex grid grid-cols-2">
-
+                               
                                 <InputNumber
                                     onDecrease={handleDecrease}
                                     onIncrease={handleIncrease}

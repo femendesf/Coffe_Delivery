@@ -21,7 +21,7 @@ export function CartCoffees(){
                         img={imgCoffee}
                         title={titleCoffee}
                         value={newQuantity}
-                        key={idCoffee}
+                        id={idCoffee}
                     />
                 )
             })

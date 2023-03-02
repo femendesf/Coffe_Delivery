@@ -6,7 +6,9 @@ interface CardsContextType{
     quantity: number,
     setTot: (state: number) => void,
     createList: (titleCoffee : string, imgCoffee: string, id: string, newQuantity: number) => void,
-    updateList: (id: string, newQuantity: number) => void
+    updateList: (id: string, newQuantity: number) => void,
+    updateValueToUp: (id : string) => void,
+    updateValueToDown: (id : string) => void,
 }
 
 interface CardsContextProps{
@@ -48,8 +50,36 @@ export function CardsContextProvider({ children} : CardsContextProps) {
                 return item
             })
             
-            return(newList)
+            return newList
         }
+
+        /*if(action.type === 'UPDATE_VALUE_TO_UP'){
+
+           const newValueUp = state.map((item) => {
+            if(item.idCoffee === action.payload.id){
+
+                const up = action.payload.quantity + 1
+
+                return{
+                    ...item, newQuantity: up
+                }
+            }
+           })
+
+           return newValueUp
+        }
+
+       /* if(action.type === 'UPDATE_VALUE_TO_DOWN'){
+           const newValueDown = state.map((item) => {
+            if(item.idCoffee === action.payload.id){
+                const down = item.newQuantity - 1
+                return{
+                    ...item, newQuantity:down
+                }
+            }
+           })
+           return newValueDown
+        }*/
 
         return state
     } , [])
@@ -72,17 +102,6 @@ export function CardsContextProvider({ children} : CardsContextProps) {
                     },
             }
         })
-
-        /*setListCoffees((state) => [
-            ...state,
-            {
-            idCoffee: idCoffee,
-            imgCoffee: imgCoffee,
-            titleCoffee: titleCoffee,
-            newQuantity: newQuantity
-            },
-        ]);*/
-
     }
 
     function updateList(id : string, quantity: number){
@@ -96,18 +115,38 @@ export function CardsContextProvider({ children} : CardsContextProps) {
         })
 
 
-        /*const newList = listCoffees.map((item) => {
-            if(id === item.idCoffee){
-                const tot = item.newQuantity + quantity
-                return{
-                    ...item, newQuantity: tot
-                }
+        dispatch({
+            type: 'UPDATE_VALUE_TO_UP',
+            payload:{
+                quantity: quantity,
+                id: id
             }
-            return item
-        })*/
-        //setListCoffees(newList)
+       })
+
     }
-   
+
+    function updateValueToUp(id : string){
+        
+        dispatch({
+            type: 'UPDATE_VALUE_TO_UP',
+            payload:{
+                id: id
+            }
+       })
+    }
+
+    function updateValueToDown(id : string){
+
+        dispatch({
+            type: 'UPDATE_VALUE_TO_DOWN',
+            payload:{
+                id: id
+            }
+       })
+    }
+
+
+ 
     console.log(listCoffees)
 
     return( 
@@ -117,7 +156,9 @@ export function CardsContextProvider({ children} : CardsContextProps) {
             setTot,
             listCoffees,
             createList,
-            updateList
+            updateList,
+            updateValueToUp,
+            updateValueToDown
         }}
         >
             {children}

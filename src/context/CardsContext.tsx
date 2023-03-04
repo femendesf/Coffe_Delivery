@@ -1,15 +1,16 @@
 import { createContext, ReactNode, useEffect, useReducer, useState } from "react";
 
+import { AddressDataSchema } from "../pages/Cart/Cart";
 
 interface CardsContextType{
-    listCoffees:CardInfosProps[]
+    listCoffees:CardInfosProps[],
     quantity: number,
-   
     createList: (titleCoffee : string, imgCoffee: string, id: string, newQuantity: number) => void,
     updateList: (id: string, newQuantity: number) => void,
     updateValueCart: (id : string, value: number) => void,
-    deleteCoffee: (id: string) => void
-   
+    deleteCoffee: (id: string) => void,
+    createAddressForm: (data: AddressDataSchema) => void,
+    
 }
 
 interface CardsContextProps{
@@ -26,21 +27,17 @@ export interface CardInfosProps{
     info_increment_2?: string,
 }
 
-
 export const CardsContext = createContext({} as CardsContextType)
 
 export function CardsContextProvider({ children} : CardsContextProps) {
 
     const [quantity, setQuantity] = useState(0);
 
-    
     const [listCoffees, dispatch] = useReducer((state: CardInfosProps[], action: any) => {
 
         if(action.type === 'CREATE_LIST_COFFEES'){
             return [...state, action.payload.data]
         }
-
-
 
         if(action.type === 'UPDATE_LIST_COFFEES_NEW_QUANTITY'){
             
@@ -86,7 +83,19 @@ export function CardsContextProvider({ children} : CardsContextProps) {
         return state
     } , [])
     
-    //ADICIONAR UMA LÓGICA PARA GUARDAR A SOMA TOTAL DA LISTA E NÃO DO CARD
+    const [address, setAddress] = useState<AddressDataSchema>()
+
+    function createAddressForm(data: AddressDataSchema){
+        
+        setAddress({
+            cep: data.cep,
+            city: data.city,
+            district: data.district,
+            numberHouse: data.numberHouse,
+            street: data.street,
+            uf: data.uf
+        })
+    }
 
     useEffect(() => {
 
@@ -147,20 +156,19 @@ export function CardsContextProvider({ children} : CardsContextProps) {
         })
     }
 
-    console.log(listCoffees)
-    console.log(quantity)
+    console.log(address)
 
     return( 
         <CardsContext.Provider
         value={{
             quantity,
-           
             listCoffees,
             createList,
             updateList,
             updateValueCart,
-            deleteCoffee
-        
+            deleteCoffee,
+            createAddressForm,
+           
         }}
         >
             {children}

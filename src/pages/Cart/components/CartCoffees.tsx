@@ -1,7 +1,6 @@
-import { Trash } from "phosphor-react"
 import { useContext, useEffect } from "react"
 import { CardsContext } from "../../../context/CardsContext"
-import { InputNumber } from "../../Home/components/InputNumber"
+
 import { ListCoffees } from "./ListCoffes"
 
 
@@ -12,11 +11,9 @@ export function CartCoffees(){
     const totCart = quantity * 9.90
 
     return(
-        
-        <main className="flex flex-col mt-3 bg-base-card w-[448px] p-10 rounded-card gap-3
-        ">
+
+        <main >
            {
-          
             listCoffees.map(({idCoffee, imgCoffee, titleCoffee, newQuantity}) => {
                 return(
 
@@ -28,8 +25,6 @@ export function CartCoffees(){
                     />
                 )
             })
-          
-           
            }
 
             <div className="flex justify-between mt-6 text-sm">
@@ -47,7 +42,8 @@ export function CartCoffees(){
                 <span>{(totCart + 3.50).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
             </div>
 
-            <button className="mt-5 bg-yellow text-white font-bold text-sm py-3 rounded-md">CONFIRMAR PEDIDO</button>
+            
+
         </main>
     )
 }

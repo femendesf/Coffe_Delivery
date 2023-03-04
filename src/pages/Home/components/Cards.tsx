@@ -1,6 +1,6 @@
 import { ShoppingCart } from "phosphor-react";
-import { useContext, useEffect, useState } from "react";
-import { CardInfosProps, CardsContext } from "../../../context/CardsContext";
+import { useContext, useState } from "react";
+import { CardsContext } from "../../../context/CardsContext";
 import { InputNumber } from "./InputNumber"
 
 interface CardProps{

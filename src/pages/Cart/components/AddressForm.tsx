@@ -3,7 +3,7 @@ import { useFormContext } from "react-hook-form"
 
 export function AddressForm(){
 
-    const {register} = useFormContext()    
+    const {register, formState: {errors}} = useFormContext()    
 
     return(
 
@@ -18,31 +18,45 @@ export function AddressForm(){
                 
             </div>
         
-            <div className="flex flex-col gap-4" id="input_address">
-                <input 
-                    type="number"
-                    placeholder="CEP" 
-                    className="w-52"
-                    id="cep"
-                    {...register('cep')}
-                />
+            <main className="flex flex-col gap-4" id="input_address">
 
-                <input 
-                    type="text" 
-                    placeholder="Rua"
-                    id="street"
-                    {...register('street')}
-                />
-
-                <div className="flex gap-3">
-
+                <div >
                     <input 
                         type="number"
-                        id="numberHouse"
-                        placeholder="Número"
+                        placeholder="CEP" 
                         className="w-52"
-                        {...register('numberHouse')}
+                        id="cep"
+                        {...register('cep', {valueAsNumber: true})}
+                    
                     />
+                    {errors.cep && <span>Informe o CEP</span>}
+                </div>
+                
+
+                <div>
+                     <input 
+                        type="text" 
+                        placeholder="Rua"
+                        id="street"
+                        {...register('street')}
+                    />
+                    {errors.street && <span>Informe a RUA</span>}
+                </div>
+               
+
+                <section className="flex gap-3">
+
+                    <div>
+                        <input 
+                            type="number"
+                            id="numberHouse"
+                            placeholder="Número"
+                            className="w-52"
+                            {...register('numberHouse', {valueAsNumber: true})}
+                        />
+                        {errors.numberHouse && <span>Informe o número da casa</span>}
+                    </div>
+                   
 
                     <input 
                         type="text"
@@ -52,36 +66,47 @@ export function AddressForm(){
                         {...register('complement')}
                     />
 
-                </div>
+                </section>
 
-                <div className="flex gap-3">
+                <section className="flex gap-3">
 
-                    <input 
-                        type="text"
-                        placeholder="Bairro"
-                        className="w-52"
-                        id="district"
-                        {...register('district')}
-                    />
+                    <div className="">
+                        <input 
+                            type="text"
+                            placeholder="Bairro"
+                            className="w-52"
+                            id="district"
+                            {...register('district')}
+                        />
+                        {errors.district && <span>Informe o BAIRRO</span>}
+                    </div>
+                    
 
-                    <input 
-                        type="text"
-                        id="city"
-                        placeholder="Cidade"
-                        className="w-full"
-                        {...register('city')}
-                    />
+                    <div>
+                        <input 
+                            type="text"
+                            id="city"
+                            placeholder="Cidade"
+                            className="w-full"
+                            {...register('city')}
+                        />
+                        {errors.city && <span>Informe a CIDADE</span>}
+                    </div>
+                   
+                    <div>
+                        <input 
+                            type="text"
+                            placeholder="UF"
+                            className="w-[60px]"
+                            id="uf"
+                            { ...register('uf')}
+                        />
+                        {errors.uf && <span>informe estado (UF) </span>}
+                    </div>   
+                    
+                </section>
 
-                    <input 
-                        type="text"
-                        placeholder="UF"
-                        className="w-[60px]"
-                        id="uf"
-                        {...register('uf')}
-                    />
-
-                </div>
-            </div>
+            </main>
             
         </main>
     )

@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import { Home } from "./pages/Home/Home";
+import { Home } from "./pages/Home/Index";
 import { Header } from "./layouts/Header";
 import { DefaultLayout } from "./layouts/DefaultLayout";
-import { CartIndex } from "./pages/Cart/Cart";
+import { CartIndex } from "./pages/Cart/Index";
 
 export function Router(){
 

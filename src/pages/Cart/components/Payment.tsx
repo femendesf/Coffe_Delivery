@@ -17,6 +17,7 @@ export function Payment(){
                 <button> <CreditCard className="text-purple" size={16}/> CARTÃO DE CRÉDITO</button>
                 <button> <Bank className="text-purple" size={16}/> CARTÃO DE DÉBITO</button>
                 <button> <Money className="text-purple" size={16}/> DINHEIRO</button>
+               
             </div>
         </div>
     )

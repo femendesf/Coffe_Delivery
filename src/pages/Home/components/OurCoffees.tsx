@@ -1,7 +1,6 @@
 import { Cards } from "./Cards";
 import { v4 as uuidv4 } from 'uuid';
-import { useContext, useEffect } from "react";
-import { CardsContext} from "../../../context/CardsContext";
+
 
 interface ListCardsProps{
     src: string,

@@ -20,9 +20,18 @@
         @apply h-[42px] rounded bg-base-input p-3 placeholder:text-base-label border text-base-text
    }
 
+   #input_address div{
+        @apply flex flex-col
+   }
+
+   #input_address span{
+    @apply text-red-600 text-xs
+   }
+
    #button_payment button{
     @apply flex gap-3 items-center bg-base-button p-4 rounded-md text-xs hover:bg-base-hover focus:bg-purple-light focus:border focus:border-purple
    }
+
 }
 
 html {

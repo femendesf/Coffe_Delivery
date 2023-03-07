@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useEffect, useReducer, useState } from "react";
-
-import { AddressDataSchema } from "../pages/Cart/Cart";
+import { AddressDataSchema } from "../pages/Cart/Index";
+import { v4 as uuidv4 } from 'uuid';
 
 interface CardsContextType{
     listCoffees:CardInfosProps[],
@@ -15,6 +15,10 @@ interface CardsContextType{
 
 interface CardsContextProps{
     children: ReactNode
+}
+
+interface CreateAddressFormProps extends AddressDataSchema{
+    id: string
 }
 
 export interface CardInfosProps{
@@ -83,18 +87,21 @@ export function CardsContextProvider({ children} : CardsContextProps) {
         return state
     } , [])
     
-    const [address, setAddress] = useState<AddressDataSchema>()
+    const [addressForm , setAddressForm] = useState<AddressDataSchema>()
 
     function createAddressForm(data: AddressDataSchema){
-        
-        setAddress({
+
+        const newAddres: CreateAddressFormProps = {
+            id: uuidv4(),
             cep: data.cep,
-            city: data.city,
-            district: data.district,
-            numberHouse: data.numberHouse,
             street: data.street,
+            numberHouse: data.numberHouse,
+            complement: data.complement,
+            district: data.district,
+            city: data.city,
             uf: data.uf
-        })
+        }
+        setAddressForm(newAddres)
     }
 
     useEffect(() => {
@@ -156,7 +163,7 @@ export function CardsContextProvider({ children} : CardsContextProps) {
         })
     }
 
-    console.log(address)
+    console.log(addressForm)
 
     return( 
         <CardsContext.Provider

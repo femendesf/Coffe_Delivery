@@ -29,7 +29,7 @@ export function Header(){
                   <h2 >Curitiba, PR</h2>
               </div>
             
-              <NavLink  to='/cart'>
+              <NavLink  to='/order'>
                 
                 <button className='bg-yellow-light text-yellow-dark flex items-center w-9 h-9 rounded p-2 hover:bg-yellow-hover'> 
                   <ShoppingCart size={22} weight='fill'/> 

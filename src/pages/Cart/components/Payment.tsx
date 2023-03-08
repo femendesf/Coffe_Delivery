@@ -1,6 +1,18 @@
-import { Bank, Cards, CreditCard, CurrencyDollar, Money } from "phosphor-react"
+import { Bank, CreditCard, CurrencyDollar, Money } from "phosphor-react"
+import { useState } from "react";
+import { useFormContext } from "react-hook-form"
+
 
 export function Payment(){
+
+    const {watch, setValue} = useFormContext() 
+
+    function handleButtonClick(event: React.MouseEvent<HTMLButtonElement>) {
+        const buttonValue = event.currentTarget.value;
+        setValue('payment', buttonValue);
+    }
+
+    const {register} = useFormContext() 
     return(
         <div className="flex flex-col itemc mt-3 bg-base-card mb-[240px] p-10 rounded-md">
            
@@ -13,11 +25,12 @@ export function Payment(){
                 
             </div>
             
-            <div className="grid  grid-cols-3 gap-3 justify-between mt-8 " id="button_payment">
-                <button> <CreditCard className="text-purple" size={16}/> CARTÃO DE CRÉDITO</button>
-                <button> <Bank className="text-purple" size={16}/> CARTÃO DE DÉBITO</button>
-                <button> <Money className="text-purple" size={16}/> DINHEIRO</button>
+            <div className="grid  grid-cols-3 gap-3 justify-between mt-8 " id="button_payment" {...register('payment')}>
                
+                <button type="button" value="creditCard" onClick={handleButtonClick}> <CreditCard className="text-purple" size={16}/> CARTÃO DE CRÉDITO</button>
+                <button type="button" value="debitCard" onClick={handleButtonClick}> <Bank className="text-purple" size={16}/> CARTÃO DE DÉBITO</button>
+                <button type="button" value="cash" onClick={handleButtonClick}> <Money className="text-purple" size={16}/> DINHEIRO</button>
+                
             </div>
         </div>
     )

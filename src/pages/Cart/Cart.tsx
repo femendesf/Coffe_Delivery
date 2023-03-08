@@ -2,13 +2,14 @@
 import { AddressForm } from "./components/AddressForm"
 import { CartCoffees } from "./components/CartCoffees"
 import { Payment } from "./components/Payment"
+import { CardsContext } from "../../context/CardsContext"
 
 import * as zod from 'zod'
 import {zodResolver} from '@hookform/resolvers/zod'
-
+import { useNavigate } from "react-router-dom";
 import {FormProvider, useForm } from 'react-hook-form'
-import { useContext} from "react"
-import { CardsContext } from "../../context/CardsContext"
+import { useContext, useState} from "react"
+
 
 
 const addressFormSchema = zod.object({
@@ -19,38 +20,45 @@ const addressFormSchema = zod.object({
     complement: zod.string().optional(),
     district: zod.string({required_error: 'Informe o bairro'}).min(1),
     city: zod.string({required_error: 'Informe a cidade'}).min(1),
-    uf: zod.string({required_error: 'Informe o estado'}).min(2)
+    uf: zod.string({required_error: 'Informe o estado'}).min(2),
+    payment: zod.string()
 })
 
 export type AddressDataSchema = zod.infer<typeof addressFormSchema>
 
-export function CartIndex(){
+export function Order(){
 
     const addressForm = useForm<AddressDataSchema>({
         resolver: zodResolver(addressFormSchema),
-        
+        defaultValues:{
+            payment: ''
+        }
     })
 
     const {createAddressForm} = useContext(CardsContext)
-
+    
     const {handleSubmit} = addressForm
 
+    const navigate = useNavigate();
+   
     function handleFormCreate(data: AddressDataSchema){
         createAddressForm(data)
+        navigate('/orderConfirmed')
     }
+    
 
     return(
         <main>
-            <form onSubmit={handleSubmit(handleFormCreate)} action='' className="flex mt-28 gap-8 justify-center ">
+            <form onSubmit={handleSubmit(handleFormCreate)} className="flex mt-28 gap-8 justify-center ">
            
                 <div>
                     <h1 className="text-lg">Complete seu pedido</h1>
             
                     <FormProvider {...addressForm}>
                         <AddressForm/>
+                        <Payment
+                        />
                     </FormProvider>
-
-                    <Payment/>
                 </div>
                 
                 <div>

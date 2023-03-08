@@ -1,8 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import { Home } from "./pages/Home/Index";
-import { Header } from "./layouts/Header";
+import { Home } from "./pages/Home/Home";
 import { DefaultLayout } from "./layouts/DefaultLayout";
-import { CartIndex } from "./pages/Cart/Index";
+import { Order } from "./pages/Cart/Cart";
 
 export function Router(){
 
@@ -10,8 +9,8 @@ export function Router(){
         <Routes>
             <Route path="/" element={<DefaultLayout/>}>
                 <Route path="/" element={<Home/>}></Route>
-               
-                <Route path="/cart" element={<CartIndex/>}></Route> 
+                <Route path="/order" element={<Order/>}></Route> 
+                <Route path="/orderConfirmed"></Route>
             </Route>
             
         </Routes>

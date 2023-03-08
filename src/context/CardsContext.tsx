@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useEffect, useReducer, useState } from "react";
-import { AddressDataSchema } from "../pages/Cart/Index";
+import { AddressDataSchema } from "../pages/Cart/Cart";
 import { v4 as uuidv4 } from 'uuid';
 
 interface CardsContextType{
@@ -99,7 +99,8 @@ export function CardsContextProvider({ children} : CardsContextProps) {
             complement: data.complement,
             district: data.district,
             city: data.city,
-            uf: data.uf
+            uf: data.uf,
+            payment: data.payment
         }
         setAddressForm(newAddres)
     }

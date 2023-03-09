@@ -5,12 +5,12 @@ import { v4 as uuidv4 } from 'uuid';
 interface CardsContextType{
     listCoffees:CardInfosProps[],
     quantity: number,
+    orderForm: AddressDataSchema,
     createList: (titleCoffee : string, imgCoffee: string, id: string, newQuantity: number) => void,
     updateList: (id: string, newQuantity: number) => void,
     updateValueCart: (id : string, value: number) => void,
     deleteCoffee: (id: string) => void,
     createAddressForm: (data: AddressDataSchema) => void,
-    
 }
 
 interface CardsContextProps{
@@ -87,7 +87,16 @@ export function CardsContextProvider({ children} : CardsContextProps) {
         return state
     } , [])
     
-    const [addressForm , setAddressForm] = useState<AddressDataSchema>()
+    const [orderForm, setAddressForm] = useState<AddressDataSchema>({
+        cep: 0,
+        street: "",
+        numberHouse: 0,
+        complement: "",
+        district: "",
+        city: "",
+        uf: "",
+        payment: "",
+    })
 
     function createAddressForm(data: AddressDataSchema){
 
@@ -164,7 +173,7 @@ export function CardsContextProvider({ children} : CardsContextProps) {
         })
     }
 
-    console.log(addressForm)
+    console.log(orderForm)
 
     return( 
         <CardsContext.Provider
@@ -176,7 +185,8 @@ export function CardsContextProvider({ children} : CardsContextProps) {
             updateValueCart,
             deleteCoffee,
             createAddressForm,
-           
+            orderForm
+            
         }}
         >
             {children}

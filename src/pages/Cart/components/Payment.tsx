@@ -1,11 +1,12 @@
 import { Bank, CreditCard, CurrencyDollar, Money } from "phosphor-react"
-import { useState } from "react";
+
 import { useFormContext } from "react-hook-form"
+import { InputComp } from "./Input";
 
 
 export function Payment(){
 
-    const {watch, setValue} = useFormContext() 
+    const {setValue, formState: {errors}} = useFormContext() 
 
     function handleButtonClick(event: React.MouseEvent<HTMLButtonElement>) {
         const buttonValue = event.currentTarget.value;
@@ -26,12 +27,14 @@ export function Payment(){
             </div>
             
             <div className="grid  grid-cols-3 gap-3 justify-between mt-8 " id="button_payment" {...register('payment')}>
-               
+
                 <button type="button" value="creditCard" onClick={handleButtonClick}> <CreditCard className="text-purple" size={16}/> CARTÃO DE CRÉDITO</button>
                 <button type="button" value="debitCard" onClick={handleButtonClick}> <Bank className="text-purple" size={16}/> CARTÃO DE DÉBITO</button>
                 <button type="button" value="cash" onClick={handleButtonClick}> <Money className="text-purple" size={16}/> DINHEIRO</button>
-                
+
             </div>
+            {errors.payment && <span className="text-red-400 mt-1">Escolha a forma de pagamento</span>}
+
         </div>
     )
 }

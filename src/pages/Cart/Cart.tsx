@@ -8,7 +8,7 @@ import * as zod from 'zod'
 import {zodResolver} from '@hookform/resolvers/zod'
 import { useNavigate } from "react-router-dom";
 import {FormProvider, useForm } from 'react-hook-form'
-import { useContext, useState} from "react"
+import { useContext} from "react"
 
 
 
@@ -29,41 +29,41 @@ export type AddressDataSchema = zod.infer<typeof addressFormSchema>
 export function Order(){
 
     const addressForm = useForm<AddressDataSchema>({
-        resolver: zodResolver(addressFormSchema),
-        defaultValues:{
-            payment: ''
-        }
+        resolver: zodResolver(addressFormSchema)
     })
 
-    const {createAddressForm} = useContext(CardsContext)
+    const {createAddressForm, listCoffees} = useContext(CardsContext)
     
-    const {handleSubmit} = addressForm
+    const {handleSubmit, formState: {errors}} = addressForm
 
     const navigate = useNavigate();
-   
+
+    
     function handleFormCreate(data: AddressDataSchema){
-        createAddressForm(data)
-        navigate('/orderConfirmed')
+            createAddressForm(data)
+            navigate('/orderConfirmed')
     }
     
-
     return(
         <main>
             <form onSubmit={handleSubmit(handleFormCreate)} className="flex mt-28 gap-8 justify-center ">
+                
            
                 <div>
                     <h1 className="text-lg">Complete seu pedido</h1>
             
                     <FormProvider {...addressForm}>
                         <AddressForm/>
-                        <Payment
-                        />
+                        <Payment/>
                     </FormProvider>
                 </div>
                 
-                <div>
+                {listCoffees.length > 0 ?
+                
+                     <div>
                     <h1 className="text-lg">Cafés selecionados</h1>
 
+                   
                     <div className="flex flex-col mt-3 bg-base-card w-[448px] p-10 rounded-card gap-3">
                         <CartCoffees/>
                         <button 
@@ -75,6 +75,8 @@ export function Order(){
                     </div>
                     
                 </div>
+                : ''}
+               
                 
             </form>
         </main>

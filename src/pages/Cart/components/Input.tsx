@@ -1,6 +1,4 @@
 import { InputHTMLAttributes, ReactNode } from "react";
-import { Slot } from '@radix-ui/react-slot';
-
 
 interface InputRootProps{
     children: ReactNode
@@ -8,8 +6,9 @@ interface InputRootProps{
 
 function InputRoot(props: InputRootProps){
     return(
-        <div className="flex items-center">
+        <div className="flex items-center justify-between rounded bg-base-input w-full">
             {props.children}
+            
         </div>
     )
    
@@ -19,35 +18,29 @@ InputRoot.displayName = 'Input.Root'
 
 export interface InputIconProps{
     children: ReactNode,
-  
+   
 }
-
-
-function InputIcon(props: InputIconProps){
-    return(
-        <Slot>
-            {props.children}
-        </Slot>
-    )
-    
-}
-InputIcon.displayName = 'Input.Icon'
-
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement>{}
 
 function Input( props : InputProps){
 
     return(
+    <div className="flex items-center ">
         <input 
             className="bg-transparent flex-1"
             {...props}
+
         />
+       
+       
+    </div>
+        
+
     )
 }
 
 export const InputComp = {
     Root: InputRoot,
     Input: Input,
-    Icon: InputIcon
 }

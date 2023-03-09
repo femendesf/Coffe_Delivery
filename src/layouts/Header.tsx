@@ -8,7 +8,12 @@ export function Header(){
 
   const {quantity, listCoffees} = useContext(CardsContext)
 
-  let listFull = false
+  function listEmpty(){
+    if(listCoffees.length <= 0){
+      alert("Carrinho vazio. Selecione o café!")
+    }
+  }
+  
     return(
         <div className="flex items-center justify-center mt-12">
 
@@ -29,9 +34,9 @@ export function Header(){
                   <h2 >Curitiba, PR</h2>
               </div>
             
-              <NavLink  to='/order'>
+              <NavLink  to={listCoffees.length > 0 ? '/order' :''}>
                 
-                <button className='bg-yellow-light text-yellow-dark flex items-center w-9 h-9 rounded p-2 hover:bg-yellow-hover'> 
+                <button onClick={listEmpty} className='bg-yellow-light text-yellow-dark flex items-center w-9 h-9 rounded p-2 hover:bg-yellow-hover'> 
                   <ShoppingCart size={22} weight='fill'/> 
                 </button>
               </NavLink>

@@ -16,8 +16,8 @@
         @apply flex gap-3 items-center 
    }
 
-   #input_address input{
-        @apply h-[42px] rounded bg-base-input p-3 placeholder:text-base-label border text-base-text
+   #input_address input[type ='text'],[type='number']{
+        @apply h-[42px] rounded bg-base-input p-3 placeholder:text-base-label border text-base-text outline-yellow-dark outline-1
    }
 
    #input_address div{
@@ -25,7 +25,7 @@
    }
 
    #input_address span{
-    @apply text-red-600 text-xs
+    @apply text-red-400 text-xs
    }
 
    #button_payment button{
@@ -38,12 +38,16 @@ html {
     font-family: Roboto;
 }
 
-input[type=number]::-webkit-inner-spin-button { 
+#input_value::-webkit-inner-spin-button { 
     -webkit-appearance: none;
     
 }
-input[type=number] { 
+#input_value { 
    -moz-appearance: textfield;
    appearance: textfield;
 
+}
+
+#input_address input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
 }

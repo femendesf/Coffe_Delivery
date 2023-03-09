@@ -1,10 +1,15 @@
 import { MapPinLine } from "phosphor-react"
+import { useState } from "react"
 import { useFormContext } from "react-hook-form"
 
 export function AddressForm(){
 
-    const {register, formState: {errors}} = useFormContext()    
-
+    const {register, formState: {errors}, watch} = useFormContext()    
+    const botaoClicado = watch('complement')
+    const [styleComplement , setStyleComplement] = useState('flex items-center w-full rounded bg-base-input border')
+    function alterar(){
+        setStyleComplement('flex items-center w-full rounded bg-base-input border border-yellow-dark')
+    }
     return(
 
         <main className="flex flex-col bg-base-card p-10 mt-3 rounded-md">
@@ -19,7 +24,7 @@ export function AddressForm(){
             </div>
         
             <main className="flex flex-col gap-4" id="input_address">
-
+            
                 <div >
                     <input 
                         type="number"
@@ -51,30 +56,35 @@ export function AddressForm(){
                             type="number"
                             id="numberHouse"
                             placeholder="Número"
-                            className="w-52"
+                           
                             {...register('numberHouse', {valueAsNumber: true})}
                         />
                         {errors.numberHouse && <span>Informe o número da casa</span>}
                     </div>
                    
-
-                    <input 
-                        type="text"
-                        placeholder="Complemento"
-                        className="min-w-[348px]"
-                        id="complement"
-                        {...register('complement')}
-                    />
+                    <label onFocus={alterar} className={styleComplement}>
+                        <input  
+                            
+                            placeholder="Complemento"
+                            className="w-full bg-transparent placeholder:text-base-label text-base-text h-[42px] p-3 outline-none
+                            "
+                            id="complement"
+                            {...register('complement')}
+                            
+                        />
+                        {!botaoClicado ?  <h3 className="text-xs text-base-label p-3">Opcional</h3> : ''}
+                    </label>
+                   
 
                 </section>
 
                 <section className="flex gap-3">
 
-                    <div className="">
+                    <div>
                         <input 
                             type="text"
                             placeholder="Bairro"
-                            className="w-52"
+                           
                             id="district"
                             {...register('district')}
                         />
@@ -82,12 +92,11 @@ export function AddressForm(){
                     </div>
                     
 
-                    <div>
+                    <div className="w-full">
                         <input 
                             type="text"
                             id="city"
                             placeholder="Cidade"
-                            className="w-full"
                             {...register('city')}
                         />
                         {errors.city && <span>Informe a CIDADE</span>}

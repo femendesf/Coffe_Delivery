@@ -31,7 +31,7 @@ export function InputNumber({quantity, onIncrease, onDecrease, } : InputNumberPr
                 <Minus weight="bold" />
             </button>
 
-            <input type="number"className="w-6 bg-base-button  text-center" value={quantity}/>
+            <input id="inputValue" className="w-6 bg-base-button  text-center" value={quantity}/>
 
             <button 
                 onClick={onIncrease}  

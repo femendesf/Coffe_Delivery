@@ -8,12 +8,15 @@ Nesse desafio foi desenvolvido um projeto web para vendas de café online.
 ---
 
 ## Tecnologias
-* React
-* React Native
-* TypeScript
-* Vite
-* HTML
-* CSS
+
+* [React](https://pt-br.reactjs.org/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [VITE](https://vitejs.dev/)
+* [Phosphoricons](https://phosphoricons.com/)
+* [Tailwind](https://tailwindcss.com/)
+* [React-Hooh-Form](https://react-hook-form.com/)
+* [ZOD](https://github.com/colinhacks/zod)
+* [React Router DOM](https://www.npmjs.com/package/react-router-dom)
 
 ---
 

@@ -23,11 +23,7 @@ Nesse desafio foi desenvolvido um projeto web para vendas de café online.
 ---
 
 ### Instal project:
-'''
-npm install
-'''
+`npm install`
 
 ### Start project:
-'''
-npm run dev
-'''
+`npm run dev`

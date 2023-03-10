@@ -73,7 +73,7 @@ export function OrderConfirmed(){
                 </div>
                 
                 <img src="src\assets\bikeDelivery.svg" alt="Logo bike delivery"/>
-
+                
             </section>
         </div>
         

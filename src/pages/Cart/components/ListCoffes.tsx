@@ -13,7 +13,7 @@ interface ListCoffesProps{
 
 export function ListCoffees({img, title, value, id} : ListCoffesProps){
 
-    const { updateValueCart, listCoffees, deleteCoffee } = useContext(CardsContext)
+    const { updateValueCart, deleteCoffee } = useContext(CardsContext)
 
     function handleIncrease(){
        
@@ -56,7 +56,6 @@ export function ListCoffees({img, title, value, id} : ListCoffesProps){
                                 </button>
                             </div>
                         </div>
-
                 </div>
                 <span className="ml-auto text-base-text font-bold">{tot.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
 

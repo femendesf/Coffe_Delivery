@@ -32,6 +32,13 @@
     @apply flex gap-3 items-center bg-base-button p-4 rounded-md text-xs hover:bg-base-hover focus:bg-purple-light focus:border focus:border-purple
    }
 
+   #info_order div{
+    @apply flex items-center gap-3
+   }
+
+   #icon{
+    @apply flex items-center justify-center rounded-full w-8 h-8 text-white
+   }
 }
 
 html {
@@ -51,3 +58,4 @@ html {
 #input_address input::-webkit-inner-spin-button{
     -webkit-appearance: none;
 }
+

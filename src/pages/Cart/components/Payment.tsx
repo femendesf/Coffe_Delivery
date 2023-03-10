@@ -1,8 +1,6 @@
 import { Bank, CreditCard, CurrencyDollar, Money } from "phosphor-react"
 
 import { useFormContext } from "react-hook-form"
-import { InputComp } from "./Input";
-
 
 export function Payment(){
 

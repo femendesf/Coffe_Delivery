@@ -25,13 +25,22 @@ module.exports = {
         'yellow':        '#DBAC2C',
         'yellow-dark':   '#C47F17',
         'yellow-hover':   '#F0DD95',
-
+        'gradienteBorder' :  '(90deg, rgba(255,214,0,1) 0%, rgba(184,0,255,1) 100%)'
       },
       gridTemplateColumns:{
         '10' : 'repeat(2, min'
       },
       borderRadius:{
         'card' : '6px 32px 6px 32px'
+      },
+      keyframes: {
+        opacity: {
+          '0%' : {opacity: .1},
+          '100%' : {opacity: 1}
+        },
+      },
+      animation: {
+        'opacity' : 'opacity 800ms '
       }
      
     },

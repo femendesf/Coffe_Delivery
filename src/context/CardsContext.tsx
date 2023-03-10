@@ -11,6 +11,8 @@ interface CardsContextType{
     updateValueCart: (id : string, value: number) => void,
     deleteCoffee: (id: string) => void,
     createAddressForm: (data: AddressDataSchema) => void,
+    deleteListCoffees: () => void
+
 }
 
 interface CardsContextProps{
@@ -84,6 +86,10 @@ export function CardsContextProvider({ children} : CardsContextProps) {
             return newList
         }
 
+        if(action.type === 'DELETE_LISTCOFFEES'){
+            return []
+        }
+    
         return state
     } , [])
     
@@ -141,6 +147,12 @@ export function CardsContextProvider({ children} : CardsContextProps) {
         })
     }
 
+    function deleteListCoffees(){
+       dispatch({
+        type: 'DELETE_LISTCOFFEES'
+       })
+    }
+
     function updateList(id : string, quantity: number){
 
         dispatch({
@@ -174,6 +186,7 @@ export function CardsContextProvider({ children} : CardsContextProps) {
     }
 
     console.log(orderForm)
+    console.log(listCoffees)
 
     return( 
         <CardsContext.Provider
@@ -185,7 +198,8 @@ export function CardsContextProvider({ children} : CardsContextProps) {
             updateValueCart,
             deleteCoffee,
             createAddressForm,
-            orderForm
+            orderForm,
+            deleteListCoffees
             
         }}
         >

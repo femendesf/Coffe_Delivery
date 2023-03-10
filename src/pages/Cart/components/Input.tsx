@@ -1,46 +1,47 @@
-import { InputHTMLAttributes, ReactNode } from "react";
+import React, { forwardRef, useState } from 'react';
 
-interface InputRootProps{
-    children: ReactNode
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  placeholderRight?: string;
 }
 
-function InputRoot(props: InputRootProps){
-    return(
-        <div className="flex items-center justify-between rounded bg-base-input w-full">
-            {props.children}
-            
-        </div>
-    )
-   
-}
+export const Input = forwardRef<HTMLInputElement, InputProps>(({ placeholderRight, ...rest }, ref) => {
+    const [isFocused, setIsFocused] = useState(false);
+    const [rightPlaceholder, setRightPlaceholder] = useState(placeholderRight || '');
 
-InputRoot.displayName = 'Input.Root'
+    const handleInputFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+        setIsFocused(true);
+        event.currentTarget.placeholder = '';
+        setRightPlaceholder('');
+    };
 
-export interface InputIconProps{
-    children: ReactNode,
-   
-}
-
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement>{}
-
-function Input( props : InputProps){
-
-    return(
-    <div className="flex items-center ">
-        <input 
-            className="bg-transparent flex-1"
-            {...props}
-
-        />
-       
-       
-    </div>
+    const handleInputBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+        setIsFocused(false);
+        event.currentTarget.placeholder = rest.placeholder || '';
+        setRightPlaceholder(placeholderRight || '');
+    };
+    
+    return (
+        <label htmlFor="complement">
         
+        <div className=' relative justify-center overflow-hidden'>
+            <input
+                type="text"
+                ref={ref}
+                {...rest}
+                onFocus={handleInputFocus}
+                onBlur={handleInputBlur}
+                id='complement'
+            />
 
-    )
-}
+            {rightPlaceholder && !isFocused && (
+                <div className='absolute right-0 p-3 text-sm text-base-label' >
+                {rightPlaceholder}
+                </div>
+            )}
+        </div>
+    </label>
+    );
 
-export const InputComp = {
-    Root: InputRoot,
-    Input: Input,
-}
+});
+
+export default Input;

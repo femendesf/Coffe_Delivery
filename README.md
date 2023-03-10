@@ -11,7 +11,7 @@ Nesse desafio foi desenvolvido um projeto web para vendas de café online.
 * React
 * React Native
 * TypeScript
-* NodeJs
+* Vite
 * HTML
 * CSS
 
@@ -23,7 +23,11 @@ Nesse desafio foi desenvolvido um projeto web para vendas de café online.
 ---
 
 ### Instal project:
+'''
 npm install
+'''
 
 ### Start project:
+'''
 npm run dev
+'''

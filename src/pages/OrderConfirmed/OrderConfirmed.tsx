@@ -1,6 +1,7 @@
 import { CurrencyDollar, MapPin, Timer } from "phosphor-react"
 import { useContext, useState } from "react"
-import { CardsContext } from "../context/CardsContext"
+import { CardsContext } from "../../context/CardsContext"
+
 
 export function OrderConfirmed(){
 

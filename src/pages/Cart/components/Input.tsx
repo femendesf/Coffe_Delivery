@@ -23,7 +23,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({ placeholderRigh
     return (
         <label htmlFor="complement">
         
-        <div className=' relative justify-center overflow-hidden'>
+        
+        <div className='relative justify-center overflow-hidden'>
             <input
                 type="text"
                 ref={ref}
@@ -35,7 +36,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({ placeholderRigh
 
             {rightPlaceholder && !isFocused && (
                 <div className='absolute right-0 p-3 text-sm text-base-label' >
-                {rightPlaceholder}
+                    {rightPlaceholder}
                 </div>
             )}
         </div>

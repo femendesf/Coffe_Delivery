@@ -1,5 +1,10 @@
 # Coffe_Delivery
 
+## Screen:
+<img src="github\Capa.png" alt="Capa do desafio Coffee Delivery" />
+
+---
+
 ### Curso da Rocketseat. 🚀
 Projeto criado para o desafio do Ignite da Rocketseat.
 
@@ -17,11 +22,6 @@ Nesse desafio foi desenvolvido um projeto web para vendas de café online.
 * [React-Hooh-Form](https://react-hook-form.com/)
 * [ZOD](https://github.com/colinhacks/zod)
 * [React Router DOM](https://www.npmjs.com/package/react-router-dom)
-
----
-
-## Screen:
-<img src="github\Capa.png" alt="Capa do desafio Coffee Delivery" />
 
 ---
 

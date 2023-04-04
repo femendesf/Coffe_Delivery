@@ -6,13 +6,13 @@
 ---
 
 ### Curso da Rocketseat. 🚀
-Projeto criado para o desafio do Ignite da Rocketseat.
+Projeto criado para o desafio 02 do Ignite da Rocketseat.
 
 Nesse desafio foi desenvolvido um projeto web para vendas de café online.
 
 ---
 
-## Tecnologias
+## Tools 🔧:
 
 * [React](https://pt-br.reactjs.org/)
 * [TypeScript](https://www.typescriptlang.org/)

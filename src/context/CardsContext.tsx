@@ -25,7 +25,7 @@ interface CreateAddressFormProps extends AddressDataSchema{
 
 export interface CardInfosProps{
     idCoffee: string,
-    titleCoffee: string,
+    titleCoffee: string, 
     imgCoffee: string,
     newQuantity: number,
     info?: string,

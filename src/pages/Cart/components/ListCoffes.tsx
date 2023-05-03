@@ -1,5 +1,5 @@
 import { Trash } from "phosphor-react";
-import { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import { CardsContext } from "../../../context/CardsContext";
 
 import { InputNumber } from "../../Home/components/InputNumber";

@@ -1,7 +1,6 @@
 import { CurrencyDollar, MapPin, Timer } from "phosphor-react"
-import { useContext, useState } from "react"
+import { useContext} from "react"
 import { CardsContext } from "../../context/CardsContext"
-
 
 export function OrderConfirmed(){
 
@@ -21,7 +20,6 @@ export function OrderConfirmed(){
             break;
     }   
     
-
     return(
         <div className="justify-center items-center mt-28 animate-opacity">
 

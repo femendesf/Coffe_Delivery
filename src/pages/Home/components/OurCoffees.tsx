@@ -1,7 +1,6 @@
 import { Cards } from "./Cards";
 import { v4 as uuidv4 } from 'uuid';
 
-
 interface ListCardsProps{
     src: string,
     info: string,

@@ -5,7 +5,7 @@
 
 ---
 
-### Curso da Rocketseat. 🚀
+### Desafio Ignite Rocketseat. 🚀
 Projeto criado para o desafio 02 do Ignite da Rocketseat.
 
 Nesse desafio foi desenvolvido um projeto web para vendas de café online.
